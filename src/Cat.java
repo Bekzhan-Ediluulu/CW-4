@@ -9,6 +9,10 @@ public class Cat implements Feedable, Playable, Healable{
     private int average = (satiety+mood+health)/3;
     private Categories category = defineCategory();
 
+    public void setAverage() {
+        this.average = (satiety+mood+health)/3;
+    }
+
     public Cat(String name, int age) {
         try {
             if (name.trim().isEmpty()) throw new CatsException("Имя кота не может быть пустой!");
@@ -71,6 +75,7 @@ public class Cat implements Feedable, Playable, Healable{
             mood = Math.min(100, mood+4);
             break;
         }
+        setAverage();
     }
 
     @Override
@@ -89,6 +94,7 @@ public class Cat implements Feedable, Playable, Healable{
             satiety = Math.max(0, satiety-6);
             break;
         }
+        setAverage();
     }
 
     @Override
@@ -107,6 +113,18 @@ public class Cat implements Feedable, Playable, Healable{
             satiety = Math.max(0, satiety-6);
             break;
         }
+        setAverage();
     }
 
+    public void setSatiety(int satiety) {
+        this.satiety = Math.max(0, Math.min(100, satiety));
+    }
+
+    public void setMood(int mood) {
+        this.mood = Math.max(0, Math.min(100, mood));
+    }
+
+    public void setHealth(int health) {
+        this.health = Math.max(0, Math.min(100, health));
+    }
 }

@@ -1,43 +1,55 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     static List<Cat>cats = new ArrayList<>();
+    static boolean simulation = true;
     public static void main(String[] args) {
 
         cats.add(new Cat("Rom", 11));
         cats.add(new Cat("Dom", 3));
         cats.add(new Cat("Bom", 5));
         printCats(cats);
-        menu();
+        while (simulation){
+            simulation();
+        }
 
     }
-    public static void menu(){
+    public static void simulation(){
         System.out.println("Доступные действия:\n" +
                 "1-Накормить кота\n" +
                 "2-Поиграть с котом\n" +
                 "3-Поход к ветеринару\n" +
                 "4-Завести нового кота\n" +
-                "5-Следующий день\n");
+                "5-Следующий день\n" +
+                "6-Закончить симуляцию\n");
         action();
         printCats(cats);
     }
     public static void action(){
         int action = selectAction();
-        if (action<=3){
+        if (action<=3 && action>=1){
             int catNum = selectCat();
             doAction(action, catNum);
         } else if (action==4) {
             addCat();
-        } else {
-
+        } else if (action==5){
+            nextDay();
+        } else if (action==6){
+            simulation = false;
         }
     }
     public static void nextDay(){
-
+        Random r = new Random();
+        for (Cat cat :
+                cats) {
+            int satiety = r.nextInt(5)+1;
+            int health = r.nextInt(6)-3;
+            int mood = r.nextInt(6)-3;
+            cat.setSatiety(cat.getSatiety()-satiety);
+            cat.setHealth(cat.getHealth()+health);
+            cat.setMood(cat.getMood()+mood);
+        }
     }
     public static void deleteIncorrect(){
         cats.removeIf(cat -> (cat.getAge()==0));
@@ -56,7 +68,7 @@ public class Main {
             age = 0;
         }
         cats.add(new Cat(name, age));
-        if (cats.get(cats.size()).getName().trim().isEmpty() || cats.get(cats.size()).getAge()==0) System.out.println("Не удалось добавить кота, так как вы ввели некорректные данные.");
+        if (cats.get(cats.size()-1).getName().trim().isEmpty() || cats.get(cats.size()-1).getAge()==0) System.out.println("Не удалось добавить кота, так как вы ввели некорректные данные.");
         deleteIncorrect();
     }
     public static void doAction(int actionNum, int catNum){
@@ -74,17 +86,17 @@ public class Main {
     }
     public static int selectAction() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Введите действие, которое хотите совершить (1-5): ");
+        System.out.print("Введите действие, которое хотите совершить (1-6): ");
         int action = 0;
         try {
             while (true) {
                 action = sc.nextInt();
-                if (action<=5 && action>=1) break;
-                System.out.print("Введите цифру от 1 до 5 для выбора действия!\n" +
+                if (action<=6 && action>=1) break;
+                System.out.print("Введите цифру от 1 до 6 для выбора действия!\n" +
                         "Повторный ввод: ");
             }
         } catch (InputMismatchException e) {
-            System.out.println("Можно вводить только целые числа от 1 до 5!");
+            System.out.println("Можно вводить только целые числа от 1 до 6!");
             action();
         }
         return action;
