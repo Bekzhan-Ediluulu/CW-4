@@ -8,6 +8,7 @@ public class Cat implements Feedable, Playable, Healable{
     private int health = randomSetter();
     private int average = (satiety+mood+health)/3;
     private Categories category = defineCategory();
+    boolean actionDone = false;
 
     public void setAverage() {
         this.average = (satiety+mood+health)/3;

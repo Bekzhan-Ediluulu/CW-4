@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8915e9b-9aff-4bcb-b8c4-5201b4f01b98" name="Changes" comment="Completed stages 1, 2, 3, 4&#10;Left to complete 5th and 6th stages">
+    <list default="true" id="c8915e9b-9aff-4bcb-b8c4-5201b4f01b98" name="Changes" comment="Realised stage 5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
@@ -79,7 +79,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1673072333594</updated>
-      <workItem from="1673072335351" duration="19844000" />
+      <workItem from="1673072335351" duration="21742000" />
     </task>
     <task id="LOCAL-00001" summary="Completed stages 1, 2, 3, 4&#10;Left to complete 5th and 6th stages">
       <created>1673089711974</created>
@@ -88,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673089711974</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Realised stage 5">
+      <created>1673093930963</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1673093930963</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -96,6 +103,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Completed stages 1, 2, 3, 4&#10;Left to complete 5th and 6th stages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed stages 1, 2, 3, 4&#10;Left to complete 5th and 6th stages" />
+    <MESSAGE value="Realised stage 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="Realised stage 5" />
   </component>
 </project>

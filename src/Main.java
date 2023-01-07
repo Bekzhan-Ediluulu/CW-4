@@ -49,6 +49,7 @@ public class Main {
             cat.setSatiety(cat.getSatiety()-satiety);
             cat.setHealth(cat.getHealth()+health);
             cat.setMood(cat.getMood()+mood);
+            cat.actionDone = false;
         }
     }
     public static void deleteIncorrect(){
@@ -72,16 +73,21 @@ public class Main {
         deleteIncorrect();
     }
     public static void doAction(int actionNum, int catNum){
-        switch (actionNum) {
-            case 1: cats.get(catNum).feed();
-                System.out.printf("Вы покормили кота по имени %s!\n", cats.get(catNum).getName());
-                break;
-            case 2: cats.get(catNum).play();
-                System.out.printf("Вы поиграли с котом по имени %s!\n", cats.get(catNum).getName());
-                break;
-            case 3: cats.get(catNum).heal();
-                System.out.printf("Вы вылечили кота по имени %s!\n", cats.get(catNum).getName());
-                break;
+        if (cats.get(catNum).actionDone){
+            System.out.println("Вы можете совершить с котом только одно действие за день, выберите другого, либо попробуйте на следующий день.");
+        } else {
+            switch (actionNum) {
+                case 1: cats.get(catNum).feed();
+                    System.out.printf("Вы покормили кота по имени %s!\n", cats.get(catNum).getName());
+                    break;
+                case 2: cats.get(catNum).play();
+                    System.out.printf("Вы поиграли с котом по имени %s!\n", cats.get(catNum).getName());
+                    break;
+                case 3: cats.get(catNum).heal();
+                    System.out.printf("Вы вылечили кота по имени %s!\n", cats.get(catNum).getName());
+                    break;
+            }
+            cats.get(catNum).actionDone = true;
         }
     }
     public static int selectAction() {
@@ -106,7 +112,11 @@ public class Main {
         int catNum = 0;
         printCats(cats);
         System.out.printf("\nВыберите кота, чтобы выполнить действие (1-%d): ", cats.size());
-        catNum = sc.nextInt();
+        while (true) {
+            catNum = sc.nextInt();
+            if (catNum >= 1 && catNum <= cats.size()) break;
+            System.out.printf("Введите корректный номер кота! (1-%d): ", cats.size());
+        }
         return catNum-1;
 
     }
@@ -119,7 +129,11 @@ public class Main {
         System.out.println(line);
         for (Cat cat :
                 cats) {
-            System.out.printf(" %d |%8s     |%10s   |%9s |%12s  |%10s   |%16s |\n",cats.indexOf(cat)+1, cat.getName(), cat.getAge(), cat.getHealth(),cat.getMood(),cat.getSatiety(), cat.getAverage());
+            if (cat.actionDone) {
+                System.out.printf(" %d |%8s  ** |%10s   |%9s |%12s  |%10s   |%16s |\n",cats.indexOf(cat)+1, cat.getName(), cat.getAge(), cat.getHealth(),cat.getMood(),cat.getSatiety(), cat.getAverage());
+            } else {
+                System.out.printf(" %d |%8s     |%10s   |%9s |%12s  |%10s   |%16s |\n",cats.indexOf(cat)+1, cat.getName(), cat.getAge(), cat.getHealth(),cat.getMood(),cat.getSatiety(), cat.getAverage());
+            }
         }
         System.out.println(line);
     }
